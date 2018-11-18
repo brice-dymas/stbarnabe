@@ -1,0 +1,55 @@
+
+
+entity CEB {
+	nom String required minlength(7)
+}
+
+entity Carte {
+	couleur String required minlength(4)
+    montantMin Long required min(5000)
+}
+
+// an ignored comment
+/** not an ignored comment */
+entity Fidele {
+	nom String required minlength(3)
+	prenom String
+	categorie Categorie
+    montantVerse Long min(0)
+    montantRestant Long min(0)
+}
+
+entity Versement {
+	dateVersement Localdate
+    montantVersement Long required min(100)
+}
+
+entity Employe {
+	telephone String
+}
+
+enum Categorie {
+    ANONYME, FAMILLE, CHRETIEN
+}
+
+// defining multiple OneToMany relationships with comments
+relationship ManyToOne {
+	Fidele{carte} to Carte,
+    Fidele{ceb} to CEB,
+	Versement{fidele} to Fidele,
+    Versement{employe} to Employe
+}
+relationship OneToOne {
+	Employe{user} to User
+}
+// Set pagination options
+paginate all with pagination
+
+// Use Data Transfert Objects (DTO)
+// dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl
+
+// Set an angular suffix
+// angularSuffix * with mySuffix
