@@ -1,0 +1,22 @@
+{
+    "stBarnabeApp": {
+        "carte": {
+            "home": {
+                "title": "Liste des Cartes",
+                "createLabel": "Créer une Carte",
+                "createOrEditLabel": "Créer ou éditer une Carte"
+            },
+            "created": "Une nouvelle Carte a été créée avec l'identifiant {{ param }}",
+            "updated": "Le Carte avec l'identifiant {{ param }} a été mise à jour",
+            "deleted": "Le Carte avec l'identifiant {{ param }} a été supprimée",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer la Carte {{ id }} ?"
+            },
+            "detail": {
+                "title": "Details d'une Carte"
+            },
+            "couleur": "Couleur",
+            "montantMin": "Montant Minimum"
+        }
+    }
+}

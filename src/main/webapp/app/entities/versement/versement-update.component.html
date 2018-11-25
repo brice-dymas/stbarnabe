@@ -1,0 +1,67 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-versement-heading" jhiTranslate="stBarnabeApp.versement.home.createOrEditLabel">Create or edit a Versement</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!versement.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="versement.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="stBarnabeApp.versement.dateVersement" for="field_dateVersement">Date Versement</label>
+                    <div class="input-group">
+                        <input id="field_dateVersement" type="text" class="form-control" name="dateVersement" ngbDatepicker  #dateVersementDp="ngbDatepicker" [(ngModel)]="versement.dateVersement"
+                        />
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="dateVersementDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="stBarnabeApp.versement.montantVersement" for="field_montantVersement">Montant Versement</label>
+                    <input type="number" class="form-control" name="montantVersement" id="field_montantVersement"
+                        [(ngModel)]="versement.montantVersement" required min="100" jhiMin="100"/>
+                    <div [hidden]="!(editForm.controls.montantVersement?.dirty && editForm.controls.montantVersement?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.montantVersement?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.montantVersement?.errors?.min" jhiTranslate="entity.validation.min" translateValues="{ min: 100 }">
+                            This field should be at least 100.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.montantVersement?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="stBarnabeApp.versement.fidele" for="field_fidele">Fidele</label>
+                    <select class="form-control" id="field_fidele" name="fidele" [(ngModel)]="versement.fidele" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="fideleOption.id === versement.fidele?.id ? versement.fidele : fideleOption" *ngFor="let fideleOption of fideles; trackBy: trackFideleById">{{fideleOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="stBarnabeApp.versement.employe" for="field_employe">Employe</label>
+                    <select class="form-control" id="field_employe" name="employe" [(ngModel)]="versement.employe" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="employeOption.id === versement.employe?.id ? versement.employe : employeOption" *ngFor="let employeOption of employes; trackBy: trackEmployeById">{{employeOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

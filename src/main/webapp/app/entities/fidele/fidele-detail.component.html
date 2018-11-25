@@ -1,0 +1,71 @@
+<div class="row justify-content-center">
+    <div class="col-9">
+        <div *ngIf="fidele">
+            <h2><span jhiTranslate="stBarnabeApp.fidele.detail.title">Fidele</span> {{fidele.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <!-- <dl class="row-md jh-entity-details"> -->
+            <div class="row">
+                <div class="col-md-3">
+                    <dt><span jhiTranslate="stBarnabeApp.fidele.nom">Nom</span></dt>
+                    <dd>
+                        <span>{{fidele.nom}}</span>
+                    </dd>
+                </div>
+                <div class="col-md-3">
+                    <dt><span jhiTranslate="stBarnabeApp.fidele.prenom">Prenom</span></dt>
+                    <dd>
+                        <span>{{fidele.prenom}}</span>
+                    </dd>
+                </div>
+                <div class="col-md-3">
+                    <dt><span jhiTranslate="stBarnabeApp.fidele.categorie">Categorie</span></dt>
+                    <dd>
+                        <span jhiTranslate="{{'stBarnabeApp.Categorie.' + fidele.categorie}}">{{fidele.categorie}}</span>
+                    </dd>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <dt><span jhiTranslate="stBarnabeApp.fidele.montantVerse">Montant Verse</span></dt>
+                    <dd>
+                        <span>{{fidele.montantVerse | number}}</span>
+                    </dd>
+                </div>
+                <div class="col-md-3">
+                    <dt><span jhiTranslate="stBarnabeApp.fidele.montantRestant">Montant Restant</span></dt>
+                    <dd>
+                        <span>{{fidele.montantRestant| number}}</span>
+                    </dd>
+                </div>
+                <div class="col-md-3">
+                    <dt><span jhiTranslate="stBarnabeApp.fidele.carte">Carte</span></dt>
+                    <dd>
+                        <div *ngIf="fidele.carte">
+                            <a [routerLink]="['/carte', fidele.carte?.id, 'view']">{{fidele.carte?.couleur}}</a>
+                        </div>
+                    </dd>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <dt><span jhiTranslate="stBarnabeApp.fidele.ceb">Ceb</span></dt>
+                    <dd>
+                        <div *ngIf="fidele.ceb">
+                            <a [routerLink]="['/ceb', fidele.ceb?.id, 'view']">{{fidele.ceb?.nom}}</a>
+                        </div>
+                    </dd>
+                </div>
+            </div>
+            <!-- </dl> -->
+
+            <button type="submit" (click)="previousState()" class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button" [routerLink]="['/fidele', fidele.id, 'edit']" class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,24 @@
+{
+    "stBarnabeApp": {
+        "versement": {
+            "home": {
+                "title": "Versements",
+                "createLabel": "Create a new Versement",
+                "createOrEditLabel": "Create or edit a Versement"
+            },
+            "created": "A new Versement is created with identifier {{ param }}",
+            "updated": "A Versement is updated with identifier {{ param }}",
+            "deleted": "A Versement is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Versement {{ id }}?"
+            },
+            "detail": {
+                "title": "Versement"
+            },
+            "dateVersement": "Date Versement",
+            "montantVersement": "Montant Versement",
+            "fidele": "Fidele",
+            "employe": "Employe"
+        }
+    }
+}

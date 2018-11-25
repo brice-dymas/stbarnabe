@@ -1,0 +1,10 @@
+{
+    "stBarnabeApp": {
+        "Categorie": {
+            "null": "",
+            "ANONYME": "ANONYME",
+            "FAMILLE": "FAMILLE",
+            "CHRETIEN": "CHRETIEN"
+        }
+    }
+}

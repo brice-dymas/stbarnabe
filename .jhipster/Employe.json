@@ -1,0 +1,28 @@
+{
+    "name": "Employe",
+    "fields": [
+        {
+            "fieldName": "telephone",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "user",
+            "otherEntityName": "user",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "employe"
+        }
+    ],
+    "changelogDate": "20181118163925",
+    "entityTableName": "employe",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

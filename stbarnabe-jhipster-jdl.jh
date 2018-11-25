@@ -20,7 +20,7 @@ entity Fidele {
 }
 
 entity Versement {
-	dateVersement Localdate
+	dateVersement LocalDate
     montantVersement Long required min(100)
 }
 

@@ -1,0 +1,76 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="stBarnabeApp.versement.home.title">Versements</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-versement" [routerLink]="['/versement/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="stBarnabeApp.versement.home.createLabel">
+            Create new Versement
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="versements">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="dateVersement"><span jhiTranslate="stBarnabeApp.versement.dateVersement">Date Versement</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="montantVersement"><span jhiTranslate="stBarnabeApp.versement.montantVersement">Montant Versement</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="fidele.id"><span jhiTranslate="stBarnabeApp.versement.fidele">Fidele</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="employe.id"><span jhiTranslate="stBarnabeApp.versement.employe">Employe</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let versement of versements ;trackBy: trackId">
+                <td><a [routerLink]="['/versement', versement.id, 'view' ]">{{versement.id}}</a></td>
+                <td>{{versement.dateVersement | date:'mediumDate'}}</td>
+                <td>{{versement.montantVersement}}</td>
+                <td>
+                    <div *ngIf="versement.fidele">
+                        <a [routerLink]="['../fidele', versement.fidele?.id, 'view' ]" >{{versement.fidele?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="versement.employe">
+                        <a [routerLink]="['../employe', versement.employe?.id, 'view' ]" >{{versement.employe?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/versement', versement.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/versement', versement.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'versement/'+ versement.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="versements && versements.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

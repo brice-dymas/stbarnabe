@@ -1,0 +1,33 @@
+{
+    "name": "Carte",
+    "fields": [
+        {
+            "fieldName": "couleur",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength"
+            ],
+            "fieldValidateRulesMinlength": 4
+        },
+        {
+            "fieldName": "montantMin",
+            "fieldType": "Long",
+            "fieldValidateRules": [
+                "required",
+                "min"
+            ],
+            "fieldValidateRulesMin": 5000
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20181118163922",
+    "entityTableName": "carte",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

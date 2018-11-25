@@ -1,0 +1,22 @@
+{
+    "stBarnabeApp": {
+        "employe": {
+            "home": {
+                "title": "Liste des Employés",
+                "createLabel": "Créer un Employé",
+                "createOrEditLabel": "Créer ou éditer un Employé"
+            },
+            "created": "Un nouvel Employé a été créé avec l'identifiant {{ param }}",
+            "updated": "L'Employé avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "L'Employé avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer l'Employé {{ id }} ?"
+            },
+            "detail": {
+                "title": "Détails d'un Employe"
+            },
+            "telephone": "Numéro de Téléphone",
+            "user": "User"
+        }
+    }
+}

@@ -1,0 +1,116 @@
+<div class="row justify-content-center">
+    <div class="col-10">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-fidele-heading" jhiTranslate="stBarnabeApp.fidele.home.createOrEditLabel">Create or edit a Fidele</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!fidele.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="fidele.id" readonly />
+                </div>
+                <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                    <label class="form-control-label" jhiTranslate="stBarnabeApp.fidele.nom" for="field_nom">Nom</label>
+                                    <input type="text" class="form-control" name="nom" id="field_nom"
+                                        [(ngModel)]="fidele.nom" required minlength="3"/>
+                                    <div [hidden]="!(editForm.controls.nom?.dirty && editForm.controls.nom?.invalid)">
+                                        <small class="form-text text-danger"
+                                        [hidden]="!editForm.controls.nom?.errors?.required" jhiTranslate="entity.validation.required">
+                                        This field is required.
+                                        </small>
+                                        <small class="form-text text-danger"
+                                        [hidden]="!editForm.controls.nom?.errors?.minlength" jhiTranslate="entity.validation.minlength" translateValues="{ min: 3 }">
+                                        This field is required to be at least 3 characters.
+                                        </small>
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                    <label class="form-control-label" jhiTranslate="stBarnabeApp.fidele.prenom" for="field_prenom">Prenom</label>
+                                    <input type="text" class="form-control" name="prenom" id="field_prenom"
+                                        [(ngModel)]="fidele.prenom" />
+                                </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                    <label class="form-control-label" jhiTranslate="stBarnabeApp.fidele.categorie" for="field_categorie">Categorie</label>
+                                    <select class="form-control" name="categorie" [(ngModel)]="fidele.categorie" id="field_categorie" >
+                                        <option value="ANONYME">{{'stBarnabeApp.Categorie.ANONYME' | translate}}</option>
+                                        <option value="FAMILLE">{{'stBarnabeApp.Categorie.FAMILLE' | translate}}</option>
+                                        <option value="CHRETIEN">{{'stBarnabeApp.Categorie.CHRETIEN' | translate}}</option>
+                                    </select>
+                            </div>
+                        </div>
+                </div>
+                <div class="row">                    
+                        <div class="col-md-3">
+                                <div class="form-group">
+                                        <label class="form-control-label" jhiTranslate="stBarnabeApp.fidele.montantVerse" for="field_montantVerse">Montant Verse</label>
+                                        <input type="number" class="form-control" name="montantVerse" id="field_montantVerse"
+                                            [(ngModel)]="fidele.montantVerse" min="0" jhiMin="0"/>
+                                        <div [hidden]="!(editForm.controls.montantVerse?.dirty && editForm.controls.montantVerse?.invalid)">
+                                            <small class="form-text text-danger"
+                                                [hidden]="!editForm.controls.montantVerse?.errors?.min" jhiTranslate="entity.validation.min" translateValues="{ min: 0 }">
+                                                This field should be at least 0.
+                                            </small>
+                                            <small class="form-text text-danger"
+                                                [hidden]="!editForm.controls.montantVerse?.errors?.number" jhiTranslate="entity.validation.number">
+                                                This field should be a number.
+                                            </small>
+                                        </div>
+                                </div>
+                        </div>
+
+                        <!-- <div class="col-md-3">
+                            <div class="form-group">
+                                    <label class="form-control-label" jhiTranslate="stBarnabeApp.fidele.montantRestant" for="field_montantRestant">Montant Restant</label>
+                                    <input type="number" class="form-control" name="montantRestant" id="field_montantRestant"
+                                        [(ngModel)]="fidele.montantRestant" min="0" jhiMin="0"/>
+                                    <div [hidden]="!(editForm.controls.montantRestant?.dirty && editForm.controls.montantRestant?.invalid)">
+                                        <small class="form-text text-danger"
+                                            [hidden]="!editForm.controls.montantRestant?.errors?.min" jhiTranslate="entity.validation.min" translateValues="{ min: 0 }">
+                                            This field should be at least 0.
+                                        </small>
+                                        <small class="form-text text-danger"
+                                            [hidden]="!editForm.controls.montantRestant?.errors?.number" jhiTranslate="entity.validation.number">
+                                            This field should be a number.
+                                        </small>
+                                    </div>
+                            </div>
+                        </div> -->
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                    <label class="form-control-label" jhiTranslate="stBarnabeApp.fidele.carte" for="field_carte">Carte</label>
+                                    <select class="form-control" id="field_carte" name="carte" [(ngModel)]="fidele.carte" >
+                                        <option [ngValue]="null"></option>
+                                        <option [ngValue]="carteOption.id === fidele.carte?.id ? fidele.carte : carteOption" *ngFor="let carteOption of cartes; trackBy: trackCarteById">{{carteOption.couleur}}</option>
+                                    </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                    <label class="form-control-label" jhiTranslate="stBarnabeApp.fidele.ceb" for="field_ceb">Ceb</label>
+                                    <select class="form-control" id="field_ceb" name="ceb" [(ngModel)]="fidele.ceb" >
+                                        <option [ngValue]="null"></option>
+                                        <option [ngValue]="cEBOption.id === fidele.ceb?.id ? fidele.ceb : cEBOption" *ngFor="let cEBOption of cebs; trackBy: trackCEBById">{{cEBOption.nom}}</option>
+                                    </select>
+                            </div>
+                        </div>
+                        <!-- <div class="col-md-3">
+                        </div> -->
+                </div>                           
+            </div>
+            <div class="align-right">
+                <button type="button" id="cancel-save" class="btn btn-secondary btn-danger"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,95 @@
+<div class="row justify-content-center">
+    <div class="col-9">
+        <div *ngIf="fideleDto">
+            <h2><span jhiTranslate="stBarnabeApp.fidele.detail.title">Fidele</span> {{fideleDto.fidele.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <!-- <dl class="row-md jh-entity-details"> -->
+            <div class="row">
+                <div class="col-md-3">
+                    <dt><span jhiTranslate="stBarnabeApp.fidele.nom">Nom</span></dt>
+                    <dd>
+                        <span>{{fideleDto.fidele.nom}}</span>
+                    </dd>
+                </div>
+                <div class="col-md-3">
+                    <dt><span jhiTranslate="stBarnabeApp.fidele.prenom">Prenom</span></dt>
+                    <dd>
+                        <span>{{fideleDto.fidele.prenom}}</span>
+                    </dd>
+                </div>
+                <div class="col-md-3">
+                    <dt><span jhiTranslate="stBarnabeApp.fidele.categorie">Categorie</span></dt>
+                    <dd>
+                        <span jhiTranslate="{{'stBarnabeApp.Categorie.' + fideleDto.fidele.categorie}}">{{fideleDto.fidele.categorie}}</span>
+                    </dd>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <dt><span jhiTranslate="stBarnabeApp.fidele.montantVerse">Montant Verse</span></dt>
+                    <dd>
+                        <span>{{fideleDto.fidele.montantVerse | number}}</span>
+                    </dd>
+                </div>
+                <div class="col-md-3">
+                    <dt><span jhiTranslate="stBarnabeApp.fidele.montantRestant">Montant Restant</span></dt>
+                    <dd>
+                        <span>{{fideleDto.fidele.montantRestant| number}}</span>
+                    </dd>
+                </div>
+                <div class="col-md-3">
+                    <dt><span jhiTranslate="stBarnabeApp.fidele.carte">Carte</span></dt>
+                    <dd>
+                        <div *ngIf="fideleDto.fidele.carte">
+                            <a [routerLink]="['/carte', fideleDto.fidele.carte?.id, 'view']">{{fideleDto.fidele.carte?.couleur}}</a>
+                        </div>
+                    </dd>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <dt><span jhiTranslate="stBarnabeApp.fidele.ceb">Ceb</span></dt>
+                    <dd>
+                        <div *ngIf="fideleDto.fidele.ceb">
+                            <a [routerLink]="['/ceb',fideleDto.fidele.ceb?.id, 'view']">{{fideleDto.fidele.ceb?.nom}}</a>
+                        </div>
+                    </dd>
+                </div>
+            </div>
+            <!-- </dl> -->
+            <br/>
+            <div class="table-responsive" *ngIf="versements">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th><span jhiTranslate="global.field.id">ID</span></th>
+                        <th><span jhiTranslate="stBarnabeApp.versement.dateVersement">Date Versement</span></th>
+                        <th><span jhiTranslate="stBarnabeApp.versement.montantVersement">Montant Versement</span></th>
+                        <th><span jhiTranslate="stBarnabeApp.versement.employe">Employe</span></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let versement of versements ;trackBy: trackId">
+                        <td><a [routerLink]="['/versement', versement.id, 'view' ]">{{versement.id}}</a></td>
+                        <td>{{versement.dateVersement | date:'mediumDate'}}</td>
+                        <td>{{versement.montantVersement}}</td>
+                        <td>
+                            <div *ngIf="versement.employe">
+                                <a [routerLink]="['../employe', versement.employe?.id, 'view' ]" >{{versement.employe?.id}}</a>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <button type="submit" (click)="previousState()" class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button" [routerLink]="['/fidele', fideleDto.fidele.id, 'edit']" class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

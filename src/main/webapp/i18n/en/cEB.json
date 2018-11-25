@@ -1,0 +1,21 @@
+{
+    "stBarnabeApp": {
+        "cEB": {
+            "home": {
+                "title": "CEBS",
+                "createLabel": "Create a new CEB",
+                "createOrEditLabel": "Create or edit a CEB"
+            },
+            "created": "A new CEB is created with identifier {{ param }}",
+            "updated": "A CEB is updated with identifier {{ param }}",
+            "deleted": "A CEB is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete CEB {{ id }}?"
+            },
+            "detail": {
+                "title": "CEB"
+            },
+            "nom": "Nom"
+        }
+    }
+}

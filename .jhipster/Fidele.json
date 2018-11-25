@@ -1,0 +1,63 @@
+{
+    "name": "Fidele",
+    "fields": [
+        {
+            "fieldName": "nom",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength"
+            ],
+            "fieldValidateRulesMinlength": 3
+        },
+        {
+            "fieldName": "prenom",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "categorie",
+            "fieldType": "Categorie",
+            "fieldValues": "ANONYME,FAMILLE,CHRETIEN"
+        },
+        {
+            "fieldName": "montantVerse",
+            "fieldType": "Long",
+            "fieldValidateRules": [
+                "min"
+            ],
+            "fieldValidateRulesMin": 0
+        },
+        {
+            "fieldName": "montantRestant",
+            "fieldType": "Long",
+            "fieldValidateRules": [
+                "min"
+            ],
+            "fieldValidateRulesMin": 0
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "carte",
+            "otherEntityName": "carte",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "ceb",
+            "otherEntityName": "cEB",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20181118163923",
+    "javadoc": "not an ignored comment",
+    "entityTableName": "fidele",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

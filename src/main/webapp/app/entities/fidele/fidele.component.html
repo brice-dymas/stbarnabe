@@ -1,0 +1,80 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="stBarnabeApp.fidele.home.title">Fideles</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-fidele" [routerLink]="['/fidele/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="stBarnabeApp.fidele.home.createLabel">
+            Create new Fidele
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="fideles">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="nom"><span jhiTranslate="stBarnabeApp.fidele.nom">Nom</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="categorie"><span jhiTranslate="stBarnabeApp.fidele.categorie">Categorie</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="montantVerse"><span jhiTranslate="stBarnabeApp.fidele.montantVerse">Montant Verse</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="montantRestant"><span jhiTranslate="stBarnabeApp.fidele.montantRestant">Montant Restant</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="carte.id"><span jhiTranslate="stBarnabeApp.fidele.carte">Carte</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let fidele of fideles ;trackBy: trackId">
+                <td><a [routerLink]="['/fidele', fidele.id, 'view' ]">{{fidele.id}}</a></td>
+                <td>{{fidele.nom}}</td>
+                <td jhiTranslate="{{'stBarnabeApp.Categorie.' + fidele.categorie}}">{{fidele.categorie}}</td>
+                <td>{{fidele.montantVerse | number }}</td>
+                <td>{{fidele.montantRestant | number }}</td>
+                <td>
+                    <div *ngIf="fidele.carte">
+                        <a [routerLink]="['../carte', fidele.carte?.id, 'view' ]" >{{fidele.carte?.couleur}} : {{fidele.carte?.montantMin | number}} F CFA</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <!--<button type="submit"-->
+                                <!--[routerLink]="['/fidele', fidele.id, 'view' ]"-->
+                                <!--class="btn btn-info btn-sm">-->
+                            <!--<fa-icon [icon]="'eye'"></fa-icon>-->
+                            <!--<span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>-->
+                        <!--</button>&nbsp;-->
+                        <button type="submit"
+                                [routerLink]="['/fidele', fidele.id, 'versements' ]"
+                                class="btn btn-success btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>&nbsp;
+                        <button type="submit"
+                                [routerLink]="['/fidele', fidele.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>&nbsp;
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'fidele/'+ fidele.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="fideles && fideles.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity Versement.
+    -->
+    <changeSet id="20181118163924-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="fidele_id"
+                                 baseTableName="versement"
+                                 constraintName="fk_versement_fidele_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="fidele"/>
+
+        <addForeignKeyConstraint baseColumnNames="employe_id"
+                                 baseTableName="versement"
+                                 constraintName="fk_versement_employe_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="employe"/>
+
+    </changeSet>
+</databaseChangeLog>

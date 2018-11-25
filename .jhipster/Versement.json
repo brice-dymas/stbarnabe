@@ -1,0 +1,41 @@
+{
+    "name": "Versement",
+    "fields": [
+        {
+            "fieldName": "dateVersement",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "montantVersement",
+            "fieldType": "Long",
+            "fieldValidateRules": [
+                "required",
+                "min"
+            ],
+            "fieldValidateRulesMin": 100
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "fidele",
+            "otherEntityName": "fidele",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "employe",
+            "otherEntityName": "employe",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20181118163924",
+    "entityTableName": "versement",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

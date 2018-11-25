@@ -1,0 +1,21 @@
+{
+    "stBarnabeApp": {
+        "cEB": {
+            "home": {
+                "title": "Liste des CEB",
+                "createLabel": "Créer une CEB",
+                "createOrEditLabel": "Créer ou éditer une CEB"
+            },
+            "created": "Une nouvelle CEB a été créée avec l'identifiant {{ param }}",
+            "updated": "La CEB avec l'identifiant {{ param }} a été mise à jour",
+            "deleted": "La CEB avec l'identifiant {{ param }} a été supprimée",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer la CEB {{ id }} ?"
+            },
+            "detail": {
+                "title": "Détails d'une CEB"
+            },
+            "nom": "Nom de la CEB"
+        }
+    }
+}

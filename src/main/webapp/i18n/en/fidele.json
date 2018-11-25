@@ -1,0 +1,27 @@
+{
+    "stBarnabeApp": {
+        "fidele": {
+            "home": {
+                "title": "Fideles",
+                "createLabel": "Create a new Fidele",
+                "createOrEditLabel": "Create or edit a Fidele"
+            },
+            "created": "A new Fidele is created with identifier {{ param }}",
+            "updated": "A Fidele is updated with identifier {{ param }}",
+            "deleted": "A Fidele is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Fidele {{ id }}?"
+            },
+            "detail": {
+                "title": "Fidele"
+            },
+            "nom": "Nom",
+            "prenom": "Prenom",
+            "categorie": "Categorie",
+            "montantVerse": "Montant Verse",
+            "montantRestant": "Montant Restant",
+            "carte": "Carte",
+            "ceb": "Ceb"
+        }
+    }
+}
